@@ -5,4 +5,5 @@ function reverse(str){
   }
 
   reverse("awesome")
-  
+
+  reverse("test")
