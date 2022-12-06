@@ -8,7 +8,17 @@ function getDigit(num, i) {
 }
 
 // helper function to count the number of digits
+//Math.abs() makes it so a negative number would work too
 function digitCount(num) {
     if(num === 0) return 1;
     return Math.floor(Math.log10(Math.abs(num))) + 1;
+}
+
+//helper function that returns the number of digits in the largest number in an array of numbers
+function mostDigits(nums) {
+    let maxDigits = 0;
+    for(let i = 0; i < nums.length; i++) {
+        maxDigits = Math.max(maxDigits, digitCount(nums[i]))
+    }
+    return maxDigits
 }
