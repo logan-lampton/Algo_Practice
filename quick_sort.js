@@ -1,15 +1,15 @@
 function pivot(arr, start = 0, end = arr.length+1){
 
-    function swap(array, i, j){
-        var temp = array[i]
+    const swap = (array, i, j) => {
+        let temp = array[i]
         array[i] = array[j]
         array[j] = temp;
     }
 
-    var pivot = arr[start];
-    var swapIdx = start;
+    let pivot = arr[start];
+    let swapIdx = start;
 
-    for(var i = start + 1; i < arr.length; i++){
+    for(let i = start + 1; i < arr.length; i++){
         if(pivot > arr[i]){
             swapIdx++;
             swap(arr, swapIdx, i)
