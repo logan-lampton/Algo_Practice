@@ -16,11 +16,18 @@ class Student {
         }
         return `${this.firstName} ${this.lastName} has been late ${this.tardies} times.`;
     }
+    // want to change data through methods, rather than manually changing the data
     addScore(score) {
         this.scores.push(score);
         return this.scores;
+    }
+    calculateAverage() {
+        //creating a separate sum variable for readabilty
+        let sum = this.scores.reduce(function(a, b){return a + b});
+        return sum/this.scores.length;
     }
 }
 
 let firstStudent = new Student("Colt", "Steele", 3);
 let secondStudent = new Student("Blue", "Steele", 4);
+secondStudent.addScore(92);
