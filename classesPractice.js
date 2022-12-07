@@ -26,6 +26,12 @@ class Student {
         let sum = this.scores.reduce(function(a, b){return a + b});
         return sum/this.scores.length;
     }
+    //static methods are more "utility methods"
+    //not related to any particular instance; can't call on an individual instance
+    //just part of the class in general
+    static enrollStudents() {
+        return "ENROLLING STUDENTS!"
+    }
 }
 
 let firstStudent = new Student("Colt", "Steele", 3);
