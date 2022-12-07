@@ -8,3 +8,15 @@ class Node {
     }
 }
 
+class SinglyLinkedList {
+    constructor() {
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+}
+
+var list = new SinglyLinkedList()
+
+list.push("HELLO")
+list.push("GOODBYE")
