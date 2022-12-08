@@ -48,8 +48,10 @@ class SinglyLinkedList {
         let currentHead = this.head;
         this.head = currentHead.next;
         this.length--;
-        return currentHead;
+        if(this.length === 0) {
+            this.tail = null;
     }
+    return currentHead;
 }
 
 var list = new SinglyLinkedList()
