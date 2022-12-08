@@ -88,8 +88,8 @@ class SinglyLinkedList {
     }
     insert(i, val) {
         if(i < 0 || i > this.length) return false;
-        if(i === this.length) return this.push(val);
-        if(i === 0) return this.unshift(val);
+        if(i === this.length) return !!this.push(val);
+        if(i === 0) return !!this.unshift(val);
         let newNode = new Node(val);
         let prev = this.get(i -1);
         let temp = prev.next;
@@ -97,6 +97,16 @@ class SinglyLinkedList {
         newNode.next = temp;
         this.length++;
         return true;
+    }
+    remove(i) {
+        if(i < 0 || index >= this.length) return undefined;
+        if(i === 0) return this.shift();
+        if(i === this.length - 1) return this.pop();
+        let previousNode = this.get(i - 1);
+        let removed = previousNode.next;
+        previousNode.next = removed.next;
+        this.length--;
+        return removed;
     }
 }
 
