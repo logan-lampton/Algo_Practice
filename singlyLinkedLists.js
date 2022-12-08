@@ -50,8 +50,24 @@ class SinglyLinkedList {
         this.length--;
         if(this.length === 0) {
             this.tail = null;
+        }
+        return currentHead;
     }
-    return currentHead;
+    //unshift adds a node to the beginning of the list
+    //the val is the value we want the first node we are unshifting to be
+    unshift(val) {
+        let newNode = new Node(val);
+        if(!this.head) {
+            this.head = newNode;
+            this.tail = this.head;
+        } else {
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length++;
+        return this;
+    }
+
 }
 
 var list = new SinglyLinkedList()
