@@ -86,6 +86,18 @@ class SinglyLinkedList {
         }
         return false;
     }
+    insert(i, val) {
+        if(i < 0 || i > this.length) return false;
+        if(i === this.length) return this.push(val);
+        if(i === 0) return this.unshift(val);
+        let newNode = new Node(val);
+        let prev = this.get(i -1);
+        let temp = prev.next;
+        prev.next = newNode;
+        newNode.next = temp;
+        this.length++;
+        return true;
+    }
 }
 
 var list = new SinglyLinkedList()
