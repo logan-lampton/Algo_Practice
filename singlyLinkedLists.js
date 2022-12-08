@@ -67,6 +67,17 @@ class SinglyLinkedList {
         this.length++;
         return this;
     }
+    //takes in an index and then counts through the list to return the object at that index
+    get(i) {
+        if(i < 0 || i >= this.length) return null;
+        let counter = 0;
+        let current = this.head;
+        while(counter !== i) {
+            current = current.next;
+            counter++;
+        }
+        return current;
+    }
 
 }
 
