@@ -27,7 +27,7 @@ class DoublyLinkedList {
         return this;
     }
     pop() {
-        if(!head) return undefined;
+        if(!this.head) return undefined;
         var poppedNode = this.tail;
         if(this.length === 1) {
             this.head = null;
@@ -39,5 +39,20 @@ class DoublyLinkedList {
         }
         this.length--;
         return poppedNode;
+    }
+    //removes the node from the beginning of the list
+    shift() {
+        if(this.length === 0) return undefined;
+        let oldHead = this.head;
+        if(this.length === 1) {
+            this.head === null;
+            this.tail === null;
+        } else {
+            this.head = oldHead.next;
+            this.head.prev = null;
+            oldHead.next = null;
+        }
+        this.length--;
+        return oldHead;
     }
 }
