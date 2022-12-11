@@ -37,6 +37,7 @@ class BinarySearchTree {
         } else {
             let current = this.root;
             while(true){
+                if(val === current.val) return undefined;
                 if(val < current.val){
                     if(current.left === null){
                         current.left = newNode;
@@ -58,8 +59,11 @@ class BinarySearchTree {
 }
 
 // example creating nodes without additional methods:
-const tree = new BinarySearchTree();
-tree.root = new Node(10);
-tree.root.right = new Node(15);
-tree.root.left = new Node(7);
-tree.root.left.right = new Node(9);
+    // const tree = new BinarySearchTree();
+    // tree.root = new Node(10);
+    // tree.root.right = new Node(15);
+    // tree.root.left = new Node(7);
+    // tree.root.left.right = new Node(9);
+
+// many binary trees ignore duplicates and will get hung up if a duplicate is put in
+// this tree makes duplicates return "undefined"
