@@ -55,7 +55,7 @@ class BinarySearchTree {
         return false;
     }
     // recursion method; Breadth First Search
-    BFS() {
+    BFS(){
         let data = [];
         let queue = [];
         let node = this.root;
@@ -68,6 +68,18 @@ class BinarySearchTree {
             if(node.left) queue.push(node.left);
             if(node.right) queue.push(node.right);
         }
+        return data;
+    }
+    // Depth First Search; also utilizes recursion
+    DFSPreOrder(){
+        let data = [];
+        let current = this.root;
+        function traverse(node){
+            data.push(node.value);
+            if(node.left) traverse(node.left);
+            if(node.right) traverse(node.right);
+        }
+        traverse(current);
         return data;
     }
 }
