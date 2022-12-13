@@ -96,4 +96,17 @@ class BinarySearchTree {
         traverse(current);
         return data;
     }
+    // Depth First Search InOrder has only one line changed from DFSPostOrder
+    // the line changed is when the node value is pushed to the data array
+    DFSInOrder(){
+        let data = [];
+        let current = this.root;
+        function traverse(node){
+            if(node.left) traverse(node.left);
+            data.push(node.value);
+            if(node.right) traverse(node.right);
+        }
+        traverse(current);
+        return data;
+    }
 }
