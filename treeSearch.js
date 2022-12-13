@@ -110,3 +110,11 @@ class BinarySearchTree {
         return data;
     }
 }
+
+// the space complexity of Breadth First can be much larger than Depth First as it needs to save all of the children in a queue
+    // in wide trees, Depth First Search is best
+    // in a deep and narrow (long) tree, Breadth First can be better for space complexity
+
+// When to use specific DFS types: not a lot of great examples of when to use each one
+    // DFS InOrder - good for returning everything in order; good for putting into a database
+    // DFS PreOrder - can be good for "exporting a tree structure to be easily reconstructed or copied"
