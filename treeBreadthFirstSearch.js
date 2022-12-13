@@ -54,4 +54,20 @@ class BinarySearchTree {
         }
         return false;
     }
+    // recursion method; Breadth First Search
+    BFS() {
+        let data = [];
+        let queue = [];
+        let node = this.root;
+
+        queue.push(this.root);
+        // can't just say while(queue), as an empty array isn't falsey in JS
+        while(queue.length){
+            node = queue.shift();
+            data.push(node.value);
+            if(node.left) queue.push(node.left);
+            if(node.right) queue.push(node.right);
+        }
+        return data;
+    }
 }
