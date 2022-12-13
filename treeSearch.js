@@ -70,14 +70,28 @@ class BinarySearchTree {
         }
         return data;
     }
-    // Depth First Search; also utilizes recursion
+    // Depth First Search PreOrder; also utilizes recursion
     DFSPreOrder(){
         let data = [];
         let current = this.root;
+        // traverse the entire left side, then the entire right side
         function traverse(node){
             data.push(node.value);
             if(node.left) traverse(node.left);
             if(node.right) traverse(node.right);
+        }
+        traverse(current);
+        return data;
+    }
+    // Depth First Search PostOrder
+    // Explore all children before the root node
+    DFSPostOrder(){
+        let data = [];
+        let current = this.root;
+        function traverse(node){
+            if(node.left) traverse(node.left);
+            if(node.right) traverse(node.right);
+            data.push(node.value);
         }
         traverse(current);
         return data;
