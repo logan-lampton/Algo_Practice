@@ -39,7 +39,7 @@ class BinarySearchTree {
             }
         }
     }
-    find(val){
+    contains(val){
         if(this.root === null) return false;
         let current = this.root;
         let found = false;
@@ -49,10 +49,9 @@ class BinarySearchTree {
             } else if(val > current.val){
                 current = current.right;
             } else{
-                found = true;
+                return true;
             }
         }
-        if(!found) return undefined;
-        return current;
+        return false;
     }
 }
