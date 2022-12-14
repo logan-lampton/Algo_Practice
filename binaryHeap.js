@@ -35,4 +35,34 @@ class MaxBinaryHeap {
     constructor(){
         this.values = [];
     }
+    insert(element){
+        // push the element to the array
+        this.values.push(element);
+        // call bubbleUp method we create on the array
+        this.bubbleUp();
+    }
+    bubbleUp(){
+        // store a variable that is the new elements index, which is the array length - 1 (since arrays start at an index of 0)
+        let index = this.values.length - 1
+        // store the element in a variable (called element) which sets it to the the array at the index that we are adding the element at
+        const element = this.values[index]
+        // the while loop will run until the element bubbles to index 0, or is larger than the parent(s) (the break condition)
+        while(index > 0){
+            // find the parentIndex using floor of (n -1)/2
+            let parentIndex = Math.floor((index - 1)/2);
+            // define parent as the parentIndex
+            let parent = this.values[parentIndex];
+            // if the element is smaller than or equal to the parent, stop the loop
+            if(element <= parent) break;
+            // set the array at parentIndex to the element
+            this.values[parentIndex] = element;
+            // set the array at the index of the end of the array to be the parent value
+            this.values[index] = parent;
+            // set the index for the new element to be where the original parent index was
+            index = parentIndex;
+        }
+    }
 }
+
+let heap = new MaxBinaryHeap([41, 39, 33, 18, 27, 12]);
+heap.insert(55);
