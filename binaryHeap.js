@@ -84,10 +84,13 @@ class MaxBinaryHeap {
         const max = this.values[0];
         // create a variable for the last value in the array and remove it via .pop()
         const end = this.values.pop();
-        // set the value in the index 0 position to be the end value that we just popped off
-        this.values[0] = end;
-        // call the method we will create for the "sink down"
-        this.sinkDown();
+        // creating an edge case for if there is only one item in the array, so that it doesn't keep popping and then adding itself again
+        if(this.values.length > 0){
+            // set the value in the index 0 position to be the end value that we just popped off
+            this.values[0] = end;
+            // call the method we will create for the "sink down"
+            this.sinkDown();
+        }
         // at the end of the method, return the max value, which we removed from the final array
         return max;
     }
