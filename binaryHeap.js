@@ -31,6 +31,23 @@
             // Swap the value of the values element at the parentIndex with the value of the element property at child index
             // Set the index to be the parentIndex, and start over!
 
+// Remove() pseudocode
+    // remove the root
+    // replace with the most recently added element
+    // adjust the heap ("sink down")
+
+// Remove() removes the largest element and replaces it with the last element in the heap
+// Compare to the children and swap with the largest one
+// Stop once there are no more children to swap with, or the children are smaller than the element
+
+// Removing (also called extractMax)
+    // replace the first value in the values property with the last one
+    // pop the values property so that you can return the value at the end
+    // have the new root "sink down" to the correct spot:
+        // Parent index starts at 0 (the root)
+        // Find the index of the left child: 2 * index + 1 (make sure its not out of bounds)
+        // Find the index of the right 
+
 class MaxBinaryHeap {
     constructor(){
         this.values = [];
@@ -60,6 +77,68 @@ class MaxBinaryHeap {
             this.values[index] = parent;
             // set the index for the new element to be where the original parent index was
             index = parentIndex;
+        }
+    }
+    extractMax(){
+        // create a variable for the largest value, which would be at index 0
+        const max = this.values[0];
+        // create a variable for the last value in the array and remove it via .pop()
+        const end = this.values.pop();
+        // set the value in the index 0 position to be the end value that we just popped off
+        this.values[0] = end;
+        // call the method we will create for the "sink down"
+        this.sinkDown();
+        // at the end of the method, return the max value, which we removed from the final array
+        return max;
+    }
+    sinkDown(){
+        // set a variable for the index and set it to the 0 index
+        let index = 0;
+        // create a variable for the length of the array
+        const length = this.values.length;
+        // create a variable for the element "sinking down" setting it to start at the 0 index of the array
+        const element = this.values[0];
+        while(true){
+            // create a variable that grabs the left child index
+            let leftChildIndex = 2 * index + 1;
+            // create a variable that grabs the right child index
+            let rightChildIndex = 2 * index + 2;
+            // creating variables for left and right child, but leaving blank, since there is no guarantee that the element will have either child
+            let leftChild, rightChild;
+            // create variable to keep track of any swaps IF any swaps are made
+            let swap = null;
+
+            // if the left child index is less than the length of the array, set the left child to be the value of the left child index
+            // Essentially, we are checking to see if there is a left child; if so, we set the value of the left child to what is at the index of the left child in the array
+            if(leftChildIndex < length){
+                leftChild = this.values[leftChildIndex];
+                // if leftChild value is greater than the value of the element, swap = the index of the left child
+                // So the element index will swap with the index of left child
+                if(leftChild > element){
+                    swap = leftChildIndex;
+                }
+            }
+            if(rightChildIndex < length){
+                rightChild = this.values[rightChildIndex];
+                // the if statement looks to see if the element hasn't swapped with the left side AND the element value is less than the value of right child
+                // making sure that it hasn't swapped with left child makes sure that the element ends up a child of the largest value between left and right child
+                if(
+                    (swap === null && rightChild > element) || 
+                    (swap !== null && rightChild > leftChild)
+                ){
+                    // if we are certain that the right index value is greater than the element value and left child value, then the element index will swap with the right child index
+                    swap = rightChildIndex;
+                }
+            }
+            // if no swaps are made, we will break the loop; the conditional to break the loop
+            if(swap === null) break;
+            // if swap has a value, we move on...
+            // the element's original index will become that of the swap variable (which will either be the index of right child or left child, based on our previous code)
+            this.values[index] = this.values[swap];
+            // Set the value for the index for swap in the array to be the value of element; so the swap that makes the element into the spot that the child was in
+            this.values[swap] = element;
+            // update the index of the element to that of where you moved it
+            index = swap;
         }
     }
 }
