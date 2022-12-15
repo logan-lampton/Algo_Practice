@@ -47,7 +47,8 @@ class PriorityQueue {
             let parent = this.values[parentIndex];
             // DIFFERENT THAN BINARY HEAP:
                 // Want to compare if element.priority is less than parent.priority
-            if(element.priority <= parent.priority) break;
+                // to refactor to a min binary heap, want to make sure if the element priority is a higher value than the parent.priority, instead of the previous comparision to see if element is <= to parent
+            if(element.priority >= parent.priority) break;
             // set the array at parentIndex to the element
             this.values[parentIndex] = element;
             // set the array at the index of the end of the array to be the parent value
@@ -59,7 +60,8 @@ class PriorityQueue {
     // for a priority queue, "extractMax" is called "dequeue"
     dequeue(){
         // create a variable for the largest value, which would be at index 0
-        const max = this.values[0];
+        // DIFFERENT: refer to const as min, instead of max, as we are now referring to the smallest value
+        const min = this.values[0];
         // create a variable for the last value in the array and remove it via .pop()
         const end = this.values.pop();
         // creating an edge case for if there is only one item in the array, so that it doesn't keep popping and then adding itself again
@@ -70,7 +72,7 @@ class PriorityQueue {
             this.sinkDown();
         }
         // at the end of the method, return the max value, which we removed from the final array
-        return max;
+        return min;
     }
     sinkDown(){
         // set a variable for the index and set it to the 0 index
@@ -97,7 +99,7 @@ class PriorityQueue {
                 // So the element index will swap with the index of left child
                 // DIFFERENT THAN BINARY HEAP
                     // add compare the priority of leftChild with the priority of the element we are comparing
-                if(leftChild.priority > element.priority){
+                if(leftChild.priority < element.priority){
                     swap = leftChildIndex;
                 }
             }
@@ -107,8 +109,8 @@ class PriorityQueue {
                 // making sure that it hasn't swapped with left child makes sure that the element ends up a child of the largest value between left and right child
                 if(
                     // DIFFERENT! Compare the priorities
-                    (swap === null && rightChild.priority > element.priority) || 
-                    (swap !== null && rightChild.priority > leftChild.priority)
+                    (swap === null && rightChild.priority < element.priority) || 
+                    (swap !== null && rightChild.priority < leftChild.priority)
                 ){
                     // if we are certain that the right index value is greater than the element value and left child value, then the element index will swap with the right child index
                     swap = rightChildIndex;
@@ -131,3 +133,7 @@ let ER = new PriorityQueue();
 ER.enqueue("common cold", 5);
 ER.enqueue("gunshot wound", 1);
 ER.enqueue("high fever", 4);
+ER.enqueue("broken arm", 2);
+ER.enqueue("glass in foot", 3);
+
+// In the real world, priority queues often will also compare when the request was made, the resources needed, etc.
