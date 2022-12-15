@@ -1,54 +1,12 @@
-// very similar to a binary search tree but with some different rules
+// Generally a binary heap and I will be using binaryHeap.js for much of the code.
 
-// MaxBinaryHeap: parent nodes are always larger than the child nodes
+// A priority queue is a data structure where each element has a priority. Elements with higher priority are served before elements with lower priority.
+// Oftentimes a lower number denotes a higher priority Ex: 1 is a higher priority than 10
+// A very naive priority queue:
+    // Make a list and assign a priority number to each task
+    // Iterate over the list each time to find the highest priority item
 
-// MinBinaryHeap: parent nodes are always smaller than child nodes
-
-// Nodes in binary heaps can only have AT MOST two children
-// Unlike binary search trees, there is no order to the nodes (so NOT left is smaller, right is larger)
-
-// Binary Heaps are used to implement Priority Queues, which are VERY commonly used data structures
-// Binary Heaps are also used quie a bit with graph traversal algorithms
-
-// For any index of an array n
-    // the left child is stored at 2n + 1
-    // the right child is stored at 2n + 2
-
-// For any child node at index n
-    // its parent node is at index of Math.floor((n-1)/2)
-
-// Heaps don't need a Node class
-
-// MaxBinary Heap insertion
-    // add the value to the end of the list, then it "bubbles up"
-
-// Insert() pseudocode
-    // Push the value into the values property on the heap
-    // Bubble the value up to its correct spot
-        // Create a variable called index which is the length of the values property - 1
-        // Create a variable called parentIndex which is the floor of (index - 1)/2
-        // Keep looping as long as the values element at the parentIndex is less than the values element at the child index
-            // Swap the value of the values element at the parentIndex with the value of the element property at child index
-            // Set the index to be the parentIndex, and start over!
-
-// Remove() pseudocode
-    // remove the root
-    // replace with the most recently added element
-    // adjust the heap ("sink down")
-
-// Remove() removes the largest element and replaces it with the last element in the heap
-// Compare to the children and swap with the largest one
-// Stop once there are no more children to swap with, or the children are smaller than the element
-
-// Removing (also called extractMax)
-    // replace the first value in the values property with the last one
-    // pop the values property so that you can return the value at the end
-    // have the new root "sink down" to the correct spot:
-        // Parent index starts at 0 (the root)
-        // Find the index of the left child: 2 * index + 1 (make sure its not out of bounds)
-        // Find the index of the right 
-
-class MaxBinaryHeap {
+class PriorityQueue {
     constructor(){
         this.values = [];
     }
@@ -148,4 +106,3 @@ class MaxBinaryHeap {
 
 let heap = new MaxBinaryHeap([41, 39, 33, 18, 27, 12]);
 heap.insert(55);
-
