@@ -6,13 +6,31 @@
     // Make a list and assign a priority number to each task
     // Iterate over the list each time to find the highest priority item
 
+// Priority queues have a node class, unlike binary heaps
+
+// value in the node doesn't matter, since we will be using the priority to organize
+
+// in this example, we use a min binary heap (so the lowest value bubbles to the top)
+
+class Node {
+    // Node class takes in a value and a priority
+    constructor(val){
+        this.val = val;
+        this.priority = priority;
+    }
+}
+
 class PriorityQueue {
     constructor(){
         this.values = [];
     }
-    insert(element){
-        // push the element to the array
-        this.values.push(element);
+    // for a priority queue, change insert to take in a value and priority
+    // for priority queue, the insert method is called, "enqueue"
+    enqueue(val, priority){
+        // add node to insert
+        let newNode = new Node(val, priority);
+        // push the new Node to the array
+        this.values.push(newNode);
         // call bubbleUp method we create on the array
         this.bubbleUp();
     }
@@ -27,8 +45,9 @@ class PriorityQueue {
             let parentIndex = Math.floor((index - 1)/2);
             // define parent as the parentIndex
             let parent = this.values[parentIndex];
-            // if the element is smaller than or equal to the parent, stop the loop
-            if(element <= parent) break;
+            // DIFFERENT THAN BINARY HEAP:
+                // Want to compare if element.priority is less than parent.priority
+            if(element.priority <= parent.priority) break;
             // set the array at parentIndex to the element
             this.values[parentIndex] = element;
             // set the array at the index of the end of the array to be the parent value
@@ -37,7 +56,8 @@ class PriorityQueue {
             index = parentIndex;
         }
     }
-    extractMax(){
+    // for a priority queue, "extractMax" is called "dequeue"
+    dequeue(){
         // create a variable for the largest value, which would be at index 0
         const max = this.values[0];
         // create a variable for the last value in the array and remove it via .pop()
@@ -75,7 +95,9 @@ class PriorityQueue {
                 leftChild = this.values[leftChildIndex];
                 // if leftChild value is greater than the value of the element, swap = the index of the left child
                 // So the element index will swap with the index of left child
-                if(leftChild > element){
+                // DIFFERENT THAN BINARY HEAP
+                    // add compare the priority of leftChild with the priority of the element we are comparing
+                if(leftChild.priority > element.priority){
                     swap = leftChildIndex;
                 }
             }
@@ -84,8 +106,9 @@ class PriorityQueue {
                 // the if statement looks to see if the element hasn't swapped with the left side AND the element value is less than the value of right child
                 // making sure that it hasn't swapped with left child makes sure that the element ends up a child of the largest value between left and right child
                 if(
-                    (swap === null && rightChild > element) || 
-                    (swap !== null && rightChild > leftChild)
+                    // DIFFERENT! Compare the priorities
+                    (swap === null && rightChild.priority > element.priority) || 
+                    (swap !== null && rightChild.priority > leftChild.priority)
                 ){
                     // if we are certain that the right index value is greater than the element value and left child value, then the element index will swap with the right child index
                     swap = rightChildIndex;
@@ -104,5 +127,7 @@ class PriorityQueue {
     }
 }
 
-let heap = new MaxBinaryHeap([41, 39, 33, 18, 27, 12]);
-heap.insert(55);
+let ER = new PriorityQueue();
+ER.enqueue("common cold", 5);
+ER.enqueue("gunshot wound", 1);
+ER.enqueue("high fever", 4);
