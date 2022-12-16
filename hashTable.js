@@ -100,6 +100,22 @@ class HashTable {
         }
         this.keyMap[index].push([key, value]);
     }
+    get(key){
+        // hashes the key
+        let index = this._hash(key);
+        // searches for if the key value is at that index
+        if(this.keyMap[index]){
+            for(let i = 0; i < this.keyMap[index].length; i++){
+                // check to see if keyMap index i of key [0] is equal to key we are searching for
+                if(this.keyMap[index][i][0] === key){
+                    // we return the i of [1], which is just the value, not the entire key, value pair 
+                    return this.keyMap[index] [i] [1]
+                }
+            }
+        }
+        // return undefined if nothing is at the index
+        return undefined
+    }
 }
 
 let ht = new HashTable();
