@@ -36,3 +36,26 @@
         // Ex: the hash result for "Hello this is a full sentence string!", is the same size as the hash result for "a"
             // Made up has results: 2378410983 and -9082631346
 
+// What makes a good hash
+    // (Though the example is not a cryptographically secure one)
+    // 1. Fast (i.e. constant time)
+    // 2. Distributes values uniformly
+        // Doesn't cluster outputs at specific indices, but distributes them uniformly
+        // NOT a dumb array that always returns everything at the middle of the array
+    // Deterministic
+        // (same input yields the same output)
+
+// Example of a bad, slow Hash
+function slowHash(key){
+    for(var i = 0; i < 10000; i++){
+        console.log("everyday i'm hashing");
+    }
+    return key[0].charCodeAt(0);
+}
+// bad because it loops 10,000 times, printing each time and then does the hashing
+
+// Example of a bad, non-deterministic hash, since the returned output is not always the same for a given input
+function randomHash(key){
+    return Math.floor(Math.random() * 1000)
+}
+
