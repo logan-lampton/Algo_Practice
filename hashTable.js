@@ -59,20 +59,6 @@ function randomHash(key){
     return Math.floor(Math.random() * 1000)
 }
 
-// basic hash function
-function hash(key, arrayLength){
-    let total = 0;
-    // hashes almost always take advantage of prime numbers to make sure that keys are spread out more uniformly to increase the speed; greatly reduces the number of collisions
-    let WEIRD_PRIME = 31;
-    // the Math.min keeps the loop contained to 100 max
-    for(let i = 0; i < Math.min(key.length, 100); i++){
-        let char = key[i];
-        let value = char.charCodeAt(0) - 96;
-        total = (total * WEIRD_PRIME + value) % arrayLength;
-    }
-    return total;
-}
-
 // Dealing with collisions
     // Even with a large array and a great hash function, collisions are inevitable
     // There are many strategies for dealing with collisions, but we'll focus on two:
@@ -87,3 +73,46 @@ function hash(key, arrayLength){
 // Linear Probing
     // With linear probing, when we find a collision, we search through the array to find the next empty slot.
     // You only store one thing at each position/index
+
+// Hash table class
+class HashTable {
+    // size = 53 means that if we don't include a size, it will default to 53 (which is a solid prime number for us to use)
+    constructor(size = 53){
+        this.keyMap = new Array(size);
+    }
+    _hash(key){
+        let total = 0;
+        // hashes almost always take advantage of prime numbers to make sure that keys are spread out more uniformly to increase the speed; greatly reduces the number of collisions
+        let WEIRD_PRIME = 31;
+        // the Math.min keeps the loop contained to 100 max
+        for(let i = 0; i < Math.min(key.length, 100); i++){
+            let char = key[i];
+            // this grabs the code for each letter assigned to JS and the -96 returns 1 for "a" through 26 for "z"
+            let value = char.charCodeAt(0) - 96;
+            total = (total * WEIRD_PRIME + value) % this.keyMap.length;
+        }
+        return total;
+    }
+    set(key, value){
+        let index = this._hash(key);
+        if(!this.keyMap[index]){
+            this.keyMap[index] = [];
+        }
+        this.keyMap[index].push([key, value]);
+    }
+}
+
+let ht = new HashTable();
+ht.set("hello world", "goodbye!");
+
+
+// Set method pseudocode
+    // 1. Accepts a key and a value
+    // 2. Hashes the key
+    // 3. Stores the key-value pair in the hash table array via a separate chaining
+
+// Get method pseudocode
+    // 1. Accepts a key
+    // 2. Hashes the key
+    // 3. Retrieves the key-value pair in the hash table
+    // 4. If the key isn't found, returns "undefined"
