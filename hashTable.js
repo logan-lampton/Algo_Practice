@@ -62,10 +62,13 @@ function randomHash(key){
 // basic hash function
 function hash(key, arrayLength){
     let total = 0;
-    for(let char of key){
-        // map "a" to 1, "b" to 2, "c" to 3, etc.
+    // hashes almost always take advantage of prime numbers to make sure that keys are spread out more uniformly to increase the speed; greatly reduces the number of collisions
+    let WEIRD_PRIME = 31;
+    // the Math.min keeps the loop contained to 100 max
+    for(let i = 0; i < Math.min(key.length, 100); i++){
+        let char = key[i];
         let value = char.charCodeAt(0) - 96;
-        total = (total + value) % arrayLength;
+        total = (total * WEIRD_PRIME + value) % arrayLength;
     }
     return total;
 }
