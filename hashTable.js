@@ -117,12 +117,20 @@ class HashTable {
         return undefined
     }
     values(){
+        // just grabs the values of the key map
         let valuesArr = []
         for(let i = 0; i < this.keyMap.length; i++){
             if(this.keyMap[i]){
-                console.log(this.keyMap[i])
+                for(let j = 0; j < this.keyMap[i].length; j++){
+                    // check to see if any of the values are duplicate to only get unique values pushed to the array
+                    if(!valuesArr.includes(this.keyMap[i][j][1])){
+                        // only want the values at index 1 for i and j
+                        valuesArr.push(this.keyMap[i][j][1]);
+                    }
+                }
             }
         }
+        return valuesArr;
     }
 }
 
