@@ -116,6 +116,14 @@ class HashTable {
         // return undefined if nothing is at the index
         return undefined
     }
+    values(){
+        let valuesArr = []
+        for(let i = 0; i < this.keyMap.length; i++){
+            if(this.keyMap[i]){
+                console.log(this.keyMap[i])
+            }
+        }
+    }
 }
 
 let ht = new HashTable();
