@@ -132,6 +132,22 @@ class HashTable {
         }
         return valuesArr;
     }
+    keys(){
+        // just grabs the keys of the key map
+        let keysArr = []
+        for(let i = 0; i < this.keyMap.length; i++){
+            if(this.keyMap[i]){
+                for(let j = 0; j < this.keyMap[i].length; j++){
+                    // check to see if any of the keys are duplicate to only get unique values pushed to the array
+                    // Note we check index of 0, instead of 1, since we are looking at the keys, instead of values
+                    if(!keysArr.includes(this.keyMap[i][j][0])){
+                        keysArr.push(this.keyMap[i][j][0]);
+                    }
+                }
+            }
+        }
+        return keysArr;
+    }
 }
 
 let ht = new HashTable();
