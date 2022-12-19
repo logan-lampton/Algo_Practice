@@ -63,3 +63,23 @@
 // Most real world data is actually sparse, which is why we are learning Adjacency List (which is better for sparse data)
     // Meaning: Most vertexes are only connected to a couple of things
     // Matrixes work great if most of the vertexes are connected to each other (so that the matrix isn't mostly empty)
+
+// we are building an undirected graph 
+class Graph {
+    constructor(){
+        this.adjacencyList = {};
+    }
+    addVertex(vertex){
+        // if statement is error handling to make sure the same vertex isn't inserted more than once
+        if(!this.adjacencyList[vertex]){
+            this.adjacencyList[vertex] = [];
+        }
+        // doesn't need to return anything
+    }
+    addEdge(vertex1, vertex2){
+        // push vertex 2 into the array of vertex 1
+        this.adjacencyList[vertex1].push(vertex2);
+        // push vertex 1 into the array of vertex 2
+        this.adjacencyList[vertex2].push(vertex1);
+    }
+}
