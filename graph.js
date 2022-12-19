@@ -36,4 +36,30 @@
     // Ex: an edge has a value of 17
     // Ex: a map that has assigned distance to the paths (the edges) between locations (the nodes)
 
+// Storing graphs!
+// There are two common ways to store a graph
+    // Adjacency Matrix
+    // Adjacency List
 
+// A Matrix is a two dimensional structure usually implemented with nested arrays
+    // Store information in rows and columns
+    // Undirected graphs are symetrical, not directed graphs
+    // Kinda looks like a crossword puzzle to me
+
+// Adjacency Lists
+    // Saved into hash table arrays
+
+// Big O Comparisons
+    // Adjacency List
+        // PRO: Can take up less space in sparse graphs (less vertexes)
+        // PRO: Faster to iterate over all edges (connections)
+        // CON: Can be slower to lookup specific edge
+
+    // Adjacency Matrix
+        // CON: Takes up more space in sparse graphs (not many vertexes)
+        // CON: Slower to iterate over all edges (connections)
+        // PRO: Faster to lookup specific edge
+
+// Most real world data is actually sparse, which is why we are learning Adjacency List (which is better for sparse data)
+    // Meaning: Most vertexes are only connected to a couple of things
+    // Matrixes work great if most of the vertexes are connected to each other (so that the matrix isn't mostly empty)
