@@ -153,6 +153,11 @@ class HashTable {
 let ht = new HashTable();
 ht.set("hello world", "goodbye!");
 
+// Simple way to print all the data
+ht.keys().forEach(function(key){
+    console.log(ht.get(key));
+})
+
 
 // Set method pseudocode
     // 1. Accepts a key and a value
