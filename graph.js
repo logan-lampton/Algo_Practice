@@ -84,10 +84,10 @@ class Graph {
     }
     removeEdge(vertex1, vertex2){
         this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(
-            v => v !== vertex2;
+            v => v !== vertex2
         )
         this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(
-            v => v !== vertex1;
+            v => v !== vertex1
         )
     }
     removeVertex(vertex){
@@ -96,5 +96,12 @@ class Graph {
             this.removeEdge(vertex, adjacentVertex);
         }
         delete this.adjacencyList[vertex]
+    }
+    depthFirstRecursive(start){
+        const result = [];
+        const visited = {};
+        (function dfs(vertex){
+            if(!vertex) return null;
+        })(start)
     }
 }
