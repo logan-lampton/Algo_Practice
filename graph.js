@@ -100,9 +100,26 @@ class Graph {
     depthFirstRecursive(start){
         const result = [];
         const visited = {};
+        // allows us to call the adjacency list later in the code and not confuse JS with the "this.SOMETHING" syntax
+        const adjacencyList = this.adjacencyList;
+
         (function dfs(vertex){
             if(!vertex) return null;
+            // sets the vertex in the object to true
+            visited[vertex] = true;
+            // push the vertex to the result array
+            result.push(vertex);
+            //forEach loop on each neighbor of the vertex to see if those vertexes have been visited
+            adjacencyList[vertex].forEach(neighbor => {
+                if(!visited[neighbor]){
+                    // if a neighbor hasn't been visited, recursively run the dfs function on the neighbor
+                    return dfs(neighbor)
+                }
+            })
         })(start)
+
+        // return the resulting array
+        return result
     }
 } 
 
