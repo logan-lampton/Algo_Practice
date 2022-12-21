@@ -104,13 +104,17 @@ class Graph {
             if(!vertex) return null;
         })(start)
     }
-}
+} 
 
-// Depth First Search (DFS) Pseudocode:
-    //if vertex is empty
-        // return (this is the base case)
-    // add vertex to results list
-    // mark vertex as visited
-    // for each neighbor in vertex's neighbors:
-        // if neighbor is not visited:
-            // recursively call DFS on neighbor 
+// Depth First Search (DFS) Recursive Pseudocode:
+    // The function should accept a starting node
+    // Create a list to store the end result, to be returned at the very end
+    // Create an object to store your visited vertices
+    // Create a helper function which accepts a vertex
+        //if vertex is empty
+            // return (this is the base case)
+        // add vertex to results list
+        // mark vertex as visited
+        // for each neighbor in vertex's neighbors:
+            // if neighbor is not visited:
+                // recursively call DFS on neighbor
