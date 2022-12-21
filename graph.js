@@ -114,5 +114,3 @@ class Graph {
     // for each neighbor in vertex's neighbors:
         // if neighbor is not visited:
             // recursively call DFS on neighbor 
-
-            // TEST
