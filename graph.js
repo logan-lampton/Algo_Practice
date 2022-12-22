@@ -141,6 +141,25 @@ class Graph {
         }
         return result;
     }
+    breadthFirst(start){
+        const queue = [start];
+        const result = [];
+        const visited = {};
+        let currentVertex;
+
+        while(queue.length){
+            currentVertex = queue.shift();
+            result.push(currentVertex);
+
+            this.adjacencyList[currentVertex].forEach(neighbor => {
+                if(!visited[neighbor]){
+                    visited[neighbor] = true;
+                    queue.push(neighbor);
+                }
+            });
+        }
+        return result;
+    }
 } 
 
 // Depth First Search (DFS) Recursive Pseudocode:
@@ -166,3 +185,18 @@ class Graph {
             // label vertex as discovered
             // for each of the vertex's neighbors, N do:
                 // S.push(N)
+
+// Breadth First Search Psuedocode
+    // When we say height, we mean how many layers of vertexes they are away from the the neighbors of the start vertex
+    // Rather than using a stack, we use a queue
+
+// BFS Psuedocode
+    // This function should accept a starting vertex
+    // Create a queue (you can use an array) and place the starting vertex in it
+    // Create an array to store the nodes visited
+    // Create an object to store nodes visited
+    // Mark the starting vertex as visited
+    // Loop as long as there is anything in the queue
+    // Remove (shift) the first vertex from the queue and push it into the array that stores nodes visited
+    // If it is not inside the object that stores nodes visited, mark it as visited and enqueue (push to the end) that vertex
+    // Once done looping, return the array of visited nodes
