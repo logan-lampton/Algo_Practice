@@ -146,6 +146,7 @@ class Graph {
         const result = [];
         const visited = {};
         let currentVertex;
+        visited[start] = true;
 
         while(queue.length){
             currentVertex = queue.shift();
