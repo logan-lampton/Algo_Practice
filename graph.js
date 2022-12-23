@@ -201,3 +201,5 @@ class Graph {
     // Remove (shift) the first vertex from the queue and push it into the array that stores nodes visited
     // If it is not inside the object that stores nodes visited, mark it as visited and enqueue (push to the end) that vertex
     // Once done looping, return the array of visited nodes
+
+    // updating main
